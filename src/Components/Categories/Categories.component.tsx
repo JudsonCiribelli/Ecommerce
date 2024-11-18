@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-
 import { getDocs, collection } from 'firebase/firestore'
+//Component
+import CategoryItem from '../category-item/category-item.component'
 //Styles
 import './Categories.styles.css'
 //Utilities
 import Category from '../../types/category.types'
-
 import { db } from '../../config/firebase.config'
 
 const Categories = () => {
@@ -31,7 +31,13 @@ const Categories = () => {
 
   return (
     <div className='categories-container'>
-      <div className='categories-content'></div>
+      <div className='categories-content'>
+        {categories.map((category) => (
+          <div key={category.id}>
+            <CategoryItem category={category} />
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
