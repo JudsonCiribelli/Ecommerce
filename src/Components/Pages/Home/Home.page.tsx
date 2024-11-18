@@ -4,10 +4,10 @@ import Header from '../../Header'
 
 const HomePage = () => {
   return (
-    <div>
+    <>
       <Header />
       <Categories />
-    </div>
+    </>
   )
 }
 export default HomePage
