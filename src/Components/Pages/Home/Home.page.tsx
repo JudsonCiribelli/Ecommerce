@@ -1,6 +1,6 @@
 //Components
 import Categories from '../../Categories/Categories.component'
-import Header from '../../Header'
+import Header from '../../Header/Header'
 
 const HomePage = () => {
   return (
