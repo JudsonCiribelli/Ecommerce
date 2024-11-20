@@ -7,6 +7,7 @@ import './Categories.styles.css'
 //Utilities
 import Category from '../../types/category.types'
 import { db } from '../../config/firebase.config'
+import { CategoriesContainer, CategoriesContent } from './Categories.styles'
 
 const Categories = () => {
   const [categories, setCategories] = useState<Category[]>([])
@@ -30,15 +31,15 @@ const Categories = () => {
   }, [])
 
   return (
-    <div className='categories-container'>
-      <div className='categories-content'>
+    <CategoriesContainer>
+      <CategoriesContent>
         {categories.map((category) => (
           <div key={category.id}>
             <CategoryItem category={category} />
           </div>
         ))}
-      </div>
-    </div>
+      </CategoriesContent>
+    </CategoriesContainer>
   )
 }
 
