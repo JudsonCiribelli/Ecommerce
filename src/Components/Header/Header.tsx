@@ -14,6 +14,9 @@ const Header = () => {
   const handleLoginClick = () => {
     navigate('/login')
   }
+  const handleSignUpPageClick = () => {
+    navigate('/signUp')
+  }
   return (
     <HeaderContainer>
       <div className='header-items-container'>
@@ -21,7 +24,7 @@ const Header = () => {
         <HeaderItems>
           <HeaderItem>Explorar</HeaderItem>
           <HeaderItem onClick={handleLoginClick}>Login</HeaderItem>
-          <HeaderItem>Criar conta</HeaderItem>
+          <HeaderItem onClick={handleSignUpPageClick}>Criar conta</HeaderItem>
           <HeaderItem>
             <FaCartShopping size={25} />6
           </HeaderItem>

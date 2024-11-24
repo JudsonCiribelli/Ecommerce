@@ -34,7 +34,7 @@ const SignUpPage = () => {
 
   const watchPassword = watch('password')
 
-  const handleSubmitPress = (data: any) => {
+  const handleSubmitPress = (data: SignUpForm) => {
     console.log({ data })
   }
 
