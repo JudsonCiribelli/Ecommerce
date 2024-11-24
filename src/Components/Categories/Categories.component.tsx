@@ -8,6 +8,7 @@ import './Categories.styles.css'
 import Category from '../../types/category.types'
 import { db } from '../../config/firebase.config'
 import { CategoriesContainer, CategoriesContent } from './Categories.styles'
+import { categoryConverter } from '../../convertes/firebase.convertes'
 
 const Categories = () => {
   const [categories, setCategories] = useState<Category[]>([])
@@ -16,10 +17,15 @@ const Categories = () => {
   const fetchCategories = async () => {
     try {
       const categoriesFromFirestore: Category[] = []
-      const querySnapshot = await getDocs(collection(db, 'categories'))
-      querySnapshot.forEach((doc: any) => {
+
+      const querySnapshot = await getDocs(
+        collection(db, 'categories').withConverter(categoryConverter)
+      )
+
+      querySnapshot.forEach((doc) => {
         categoriesFromFirestore.push(doc.data())
       })
+
       setCategories(categoriesFromFirestore)
     } catch (error) {
       console.log({ error })
