@@ -10,7 +10,6 @@ import InputErrorMessage from '../../Input-error-message-component/input-error-m
 import {
   AuthError,
   AuthErrorCodes,
-  GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup
 } from 'firebase/auth'
