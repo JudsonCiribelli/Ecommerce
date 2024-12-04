@@ -1,20 +1,44 @@
 //Bibliotecas
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { FunctionComponent } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { onAuthStateChanged } from 'firebase/auth'
+import { collection, getDocs, query, where } from 'firebase/firestore'
+//Pages
 import HomePage from './Components/Pages/Home/Home.page'
 import LoginPage from './Components/Pages/Login/login.page'
 import SignUpPage from './Components/Pages/sign-up/sign-up-page'
-import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from './config/firebase.config'
+//utilities
+import { auth, db } from './config/firebase.config'
 import { UserContext } from './contexts/user.context'
-//Pages
 
 const App: FunctionComponent = () => {
-  const { currentUser } = useContext(UserContext)
-  onAuthStateChanged(auth, (user) => {
-    console.log(user)
+  const { isAuthenticated, loginUser, logoutUser } = useContext(UserContext)
+  const [isInitializing, setIsInitializing] = useState(true)
+
+  onAuthStateChanged(auth, async (user) => {
+    const isSigningOut = isAuthenticated && !user
+
+    if (isSigningOut) {
+      logoutUser()
+      return setIsInitializing(false)
+    }
+    const isSigningIn = !isAuthenticated && user
+    if (isSigningIn) {
+      const querySnapshot = await getDocs(
+        query(collection(db, 'users'), where('id', '==', user.uid))
+      )
+
+      const userFromFirestore = querySnapshot.docs[0]?.data()
+
+      return setIsInitializing(false)
+    }
+
+    return setIsInitializing(false)
   })
+
+  console.log({ isAuthenticated })
+
   return (
     <BrowserRouter>
       <Routes>
