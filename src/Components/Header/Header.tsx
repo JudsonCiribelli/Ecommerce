@@ -1,18 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Header.styles.css'
 import { FaCartShopping } from 'react-icons/fa6'
+import { useNavigate } from 'react-router-dom'
+import { signOut } from 'firebase/auth'
+//Styles
 import {
   HeaderContainer,
   HeaderItem,
   HeaderItems,
   HeaderTitle
 } from './Header.styles'
-import { useNavigate } from 'react-router-dom'
-import { signOut } from 'firebase/auth'
+//Utilities
 import { auth } from '../../config/firebase.config'
+import { UserContext } from '../../contexts/user.context'
 
 const Header = () => {
   const navigate = useNavigate()
+
+  const { isAuthenticated } = useContext(UserContext)
+
   const handleLoginClick = () => {
     navigate('/login')
   }
@@ -25,9 +31,17 @@ const Header = () => {
         <HeaderTitle>JC Clothing</HeaderTitle>
         <HeaderItems>
           <HeaderItem>Explorar</HeaderItem>
-          <HeaderItem onClick={handleLoginClick}>Login</HeaderItem>
-          <HeaderItem onClick={handleSignUpPageClick}>Criar conta</HeaderItem>
-          <HeaderItem onClick={() => signOut(auth)}>Sair</HeaderItem>
+          {!isAuthenticated && (
+            <>
+              <HeaderItem onClick={handleLoginClick}>Login</HeaderItem>
+              <HeaderItem onClick={handleSignUpPageClick}>
+                Criar conta
+              </HeaderItem>
+            </>
+          )}
+          {isAuthenticated && (
+            <HeaderItem onClick={() => signOut(auth)}>Sair</HeaderItem>
+          )}
           <HeaderItem>
             <FaCartShopping size={25} />6
           </HeaderItem>
