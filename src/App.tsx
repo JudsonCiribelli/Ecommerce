@@ -37,7 +37,7 @@ const App: FunctionComponent = () => {
     return setIsInitializing(false)
   })
 
-  console.log({ isAuthenticated })
+  if (isInitializing) return null
 
   return (
     <BrowserRouter>
