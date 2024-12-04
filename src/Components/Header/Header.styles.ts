@@ -12,6 +12,7 @@ export const HeaderTitle = styled.h2`
   font-weight: bold;
   font-size: 1.5rem;
   color: ${Colors.text.white};
+  cursor: pointer;
 `
 export const HeaderItems = styled.div`
   display: flex;
