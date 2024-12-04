@@ -2,6 +2,9 @@
 import { useForm } from 'react-hook-form'
 import { FiLogIn } from 'react-icons/fi'
 import { isEmail } from 'validator'
+import { UserContext } from '../../../contexts/user.context'
+import { useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 //Components
 import CustomButton from '../../custom-button/custom-button-component'
 import CustomInput from '../../custom-input/custom-input-component'
@@ -41,6 +44,15 @@ const SignUpPage = () => {
   } = useForm<SignUpForm>()
 
   const watchPassword = watch('password')
+
+  const { isAuthenticated } = useContext(UserContext)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/')
+    }
+  }, [isAuthenticated])
 
   const handleSubmitPress = async (data: SignUpForm) => {
     try {
