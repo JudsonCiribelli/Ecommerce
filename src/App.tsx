@@ -12,6 +12,7 @@ import SignUpPage from './Components/Pages/sign-up/sign-up-page'
 import { auth, db } from './config/firebase.config'
 import { UserContext } from './contexts/user.context'
 import { userConverter } from './convertes/firebase.convertes'
+import Loading from './Components/loading/loading.component'
 
 const App: FunctionComponent = () => {
   const { isAuthenticated, loginUser, logoutUser } = useContext(UserContext)
@@ -42,7 +43,7 @@ const App: FunctionComponent = () => {
     return setIsInitializing(false)
   })
 
-  if (isInitializing) return null
+  if (isInitializing) return <Loading />
 
   return (
     <BrowserRouter>
