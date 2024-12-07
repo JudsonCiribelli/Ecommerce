@@ -3,7 +3,7 @@ import { FiLogIn } from 'react-icons/fi'
 import { useForm } from 'react-hook-form'
 import isEmail from 'validator/lib/isEmail'
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore'
-import { useEffect, useContext } from 'react'
+import { useEffect, useContext, useState } from 'react'
 import { UserContext } from '../../../contexts/user.context'
 import { useNavigate } from 'react-router-dom'
 //Components
@@ -26,6 +26,7 @@ import {
   LoginInputContainer,
   LoginSubtitle
 } from './login.styles'
+import Loading from '../../loading/loading.component'
 
 interface LoginForm {
   email: string
@@ -39,6 +40,7 @@ const LoginPage = () => {
     handleSubmit,
     setError
   } = useForm<LoginForm>()
+  const [isLoading, setIsLoading] = useState(false)
 
   const { isAuthenticated } = useContext(UserContext)
   const navigate = useNavigate()
@@ -51,6 +53,7 @@ const LoginPage = () => {
 
   const handleSubmitPress = async (data: LoginForm) => {
     try {
+      setIsLoading(true)
       const userCredentials = await signInWithEmailAndPassword(
         auth,
         data.email,
@@ -66,11 +69,14 @@ const LoginPage = () => {
       if (_error.code === AuthErrorCodes.USER_DELETED) {
         return setError('email', { type: 'notFound' })
       }
+    } finally {
+      setIsLoading(false)
     }
   }
 
   const handleSignWithGooglePress = async () => {
     try {
+      setIsLoading(true)
       const userCredentials = await signInWithPopup(auth, googleProvider)
       const querySnapshot = await getDocs(
         query(
@@ -94,11 +100,16 @@ const LoginPage = () => {
       }
     } catch (error) {
       console.log(error)
+    } finally {
+      setIsLoading(false)
     }
   }
   return (
     <>
       <Header />
+
+      {isLoading && <Loading />}
+
       <LoginContainer>
         <LoginContent>
           <LoginHeadLine>Entre com a sua conta</LoginHeadLine>
