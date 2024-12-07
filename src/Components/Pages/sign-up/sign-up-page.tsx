@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { FiLogIn } from 'react-icons/fi'
 import { isEmail } from 'validator'
 import { UserContext } from '../../../contexts/user.context'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 //Components
 import CustomButton from '../../custom-button/custom-button-component'
@@ -25,6 +25,7 @@ import {
   SignUpInputContainer
 } from './sign-up-styles'
 import InputErrorMessage from '../../Input-error-message-component/input-error-message'
+import Loading from '../../loading/loading.component'
 
 interface SignUpForm {
   firstName: string
@@ -42,6 +43,7 @@ const SignUpPage = () => {
     setError,
     handleSubmit
   } = useForm<SignUpForm>()
+  const [isLoading, setIsLoading] = useState(false)
 
   const watchPassword = watch('password')
 
@@ -56,6 +58,7 @@ const SignUpPage = () => {
 
   const handleSubmitPress = async (data: SignUpForm) => {
     try {
+      setIsLoading(true)
       const userCredentials = await createUserWithEmailAndPassword(
         auth,
         data.email,
@@ -75,12 +78,16 @@ const SignUpPage = () => {
       if (_error.code === AuthErrorCodes.EMAIL_EXISTS) {
         return setError('email', { type: 'alreadyInUse' })
       }
+    } finally {
+      setIsLoading(false)
     }
   }
 
   return (
     <>
       <Header />
+
+      {isLoading && <Loading />}
       <SignUpContainer>
         <SignUpContent>
           <SignUpHeadline>Crie a sua conta</SignUpHeadline>
