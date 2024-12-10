@@ -6,6 +6,7 @@ import {
   CategoryTitle,
   ProductsContainer
 } from './Category-overview-styles'
+import ProductItem from '../Product-item/Product-item-component'
 
 interface CategoryOverviewProps {
   category: Category
@@ -18,7 +19,11 @@ const CategoryOverview: FunctionComponent<CategoryOverviewProps> = ({
     <CategoryContainer>
       <CategoryTitle>{category.displayName}</CategoryTitle>
 
-      <ProductsContainer></ProductsContainer>
+      <ProductsContainer>
+        {category.products.slice(0, 4).map((product) => (
+          <ProductItem key={product.id} product={product} />
+        ))}
+      </ProductsContainer>
     </CategoryContainer>
   )
 }
