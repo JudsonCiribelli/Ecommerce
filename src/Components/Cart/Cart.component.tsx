@@ -12,9 +12,10 @@ import {
 } from './Cart.styles'
 //Components
 import CustomButton from '../custom-button/custom-button-component'
+import CartItemComponent from '../Cart-Item/Cart-item.component'
 
 const CartComponent: FunctionComponent = () => {
-  const { isVisible, toggleCart } = useContext(CartContext)
+  const { isVisible, products, toggleCart } = useContext(CartContext)
 
   return (
     <CartContainer isVisible={isVisible}>
@@ -23,6 +24,9 @@ const CartComponent: FunctionComponent = () => {
         <CartTitle>Seu Carrinho</CartTitle>
 
         {/* Produtos*/}
+        {products.map((products) => (
+          <CartItemComponent product={products} key={products.id} />
+        ))}
         <CartTotal>Total: R$ 999</CartTotal>
         <CustomButton startIcon={<BsCartCheck />}>
           Ir para o Checkout
