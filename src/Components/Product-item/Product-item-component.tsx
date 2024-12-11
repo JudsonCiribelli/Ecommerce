@@ -2,11 +2,11 @@ import { FunctionComponent, useContext } from 'react'
 import { BsCartPlus } from 'react-icons/bs'
 //Utilities
 import Product from '../../types/product.types'
+import { CartContext } from '../../contexts/cart.context'
 //Styles
 import { ProductContainer, ProductImage, ProductInfo } from './Product-styles'
 //Components
 import CustomButton from '../custom-button/custom-button-component'
-import { CartContext } from '../../contexts/cart.context'
 
 interface ProductItemProps {
   product: Product
