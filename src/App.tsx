@@ -16,6 +16,7 @@ import { userConverter } from './convertes/firebase.convertes'
 //Components
 import Loading from './Components/loading/loading.component'
 import CategoryDetailsPage from './Components/Pages/Category-details-page/Category-details-page'
+import CartComponent from './Components/Cart/Cart.component'
 
 const App: FunctionComponent = () => {
   const { isAuthenticated, loginUser, logoutUser } = useContext(UserContext)
@@ -57,6 +58,7 @@ const App: FunctionComponent = () => {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signUp' element={<SignUpPage />} />
       </Routes>
+      <CartComponent />
     </BrowserRouter>
   )
 }

@@ -3,12 +3,15 @@ import CartProduct from '../types/cart.types'
 
 interface ICartContext {
   isVisible: boolean
-  setIsVisible: (visible: boolean) => void
   products: CartProduct[]
   toggleCart: () => void
 }
 
-export const CartContext = createContext<ICartContext | undefined>(undefined)
+export const CartContext = createContext<ICartContext>({
+  isVisible: false,
+  products: [],
+  toggleCart: () => {}
+})
 
 interface CartContextProviderProps {
   children: ReactNode

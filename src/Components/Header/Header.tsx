@@ -13,11 +13,13 @@ import {
 //Utilities
 import { auth } from '../../config/firebase.config'
 import { UserContext } from '../../contexts/user.context'
+import { CartContext } from '../../contexts/cart.context'
 
 const Header = () => {
   const navigate = useNavigate()
 
   const { isAuthenticated } = useContext(UserContext)
+  const { toggleCart } = useContext(CartContext)
 
   const handleLoginClick = () => {
     navigate('/login')
@@ -49,8 +51,8 @@ const Header = () => {
           {isAuthenticated && (
             <HeaderItem onClick={() => signOut(auth)}>Sair</HeaderItem>
           )}
-          <HeaderItem>
-            <FaCartShopping size={25} />6
+          <HeaderItem onClick={toggleCart}>
+            <FaCartShopping size={25} />
           </HeaderItem>
         </HeaderItems>
       </div>
