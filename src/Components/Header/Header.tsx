@@ -19,7 +19,7 @@ const Header = () => {
   const navigate = useNavigate()
 
   const { isAuthenticated } = useContext(UserContext)
-  const { toggleCart } = useContext(CartContext)
+  const { productsCount, toggleCart } = useContext(CartContext)
 
   const handleLoginClick = () => {
     navigate('/login')
@@ -53,6 +53,7 @@ const Header = () => {
           )}
           <HeaderItem onClick={toggleCart}>
             <FaCartShopping size={25} />
+            <p style={{ marginLeft: 5 }}>{productsCount}</p>
           </HeaderItem>
         </HeaderItems>
       </div>
