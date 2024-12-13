@@ -1,5 +1,11 @@
-import React, { createContext, useState, ReactNode, useMemo } from 'react'
-//Utilities
+import React, {
+  createContext,
+  useState,
+  ReactNode,
+  useMemo,
+  useEffect
+} from 'react'
+// Utilities
 import CartProduct from '../types/cart.types'
 import Product from '../types/product.types'
 
@@ -35,7 +41,16 @@ const CartContextProvider: React.FC<CartContextProviderProps> = ({
   children
 }) => {
   const [isVisible, setIsVisible] = useState(false)
-  const [products, setProducts] = useState<CartProduct[]>([])
+  const [products, setProducts] = useState<CartProduct[]>(() => {
+    // Recupera do localStorage e valida
+    const productsFromLocalStorage = localStorage.getItem('cartProducts')
+    return productsFromLocalStorage ? JSON.parse(productsFromLocalStorage) : []
+  })
+
+  useEffect(() => {
+    // Salva no localStorage sempre que os produtos mudarem
+    localStorage.setItem('cartProducts', JSON.stringify(products))
+  }, [products])
 
   const productsTotalPrice = useMemo(() => {
     return products.reduce((acc, currentProduct) => {
@@ -84,6 +99,7 @@ const CartContextProvider: React.FC<CartContextProviderProps> = ({
       )
     )
   }
+
   const decreaseProductQuantity = (productId: string) => {
     setProducts((products) =>
       products
@@ -95,12 +111,12 @@ const CartContextProvider: React.FC<CartContextProviderProps> = ({
         .filter((product) => product.quantity > 0)
     )
   }
+
   const value = {
     isVisible,
     products,
     productsTotalPrice,
     productsCount,
-    setIsVisible,
     toggleCart,
     addProductToCart,
     removeProductFromCart,

@@ -1,8 +1,7 @@
-import { Interface } from 'readline'
 import Product from './product.types'
 
 interface Category {
-  id: number
+  id: string
   name: string
   displayName: string
   imageUrl: string

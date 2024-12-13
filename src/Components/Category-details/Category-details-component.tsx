@@ -52,7 +52,6 @@ const CategoryDetails: FunctionComponent<CategoryDetailsProps> = ({
     }
     fetchCategory()
   }, [])
-  console.log({ category })
 
   if (isLoading) return <Loading />
   return (
