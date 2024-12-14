@@ -18,6 +18,7 @@ import Loading from './Components/loading/loading.component'
 import CategoryDetailsPage from './Components/Pages/Category-details-page/Category-details-page'
 import CartComponent from './Components/Cart/Cart.component'
 import CheckOutPage from './Components/Pages/Checkout/Checkout.page'
+import AuthenticationGuard from './Guards/Authentication.guards'
 
 const App: FunctionComponent = () => {
   const { isAuthenticated, loginUser, logoutUser } = useContext(UserContext)
@@ -56,7 +57,14 @@ const App: FunctionComponent = () => {
         <Route path='/' element={<HomePage />} />
         <Route path='/explore' element={<ExplorePage />} />
         <Route path='/category/:id' element={<CategoryDetailsPage />} />
-        <Route path='/checkout' element={<CheckOutPage />} />
+        <Route
+          path='/checkout'
+          element={
+            <AuthenticationGuard>
+              <CheckOutPage />
+            </AuthenticationGuard>
+          }
+        />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signUp' element={<SignUpPage />} />
       </Routes>
