@@ -38,31 +38,32 @@ const Checkout: FunctionComponent = () => {
 
   const { products, productsTotalPrice } = useContext(CartContext)
   return (
-    <CheckoutContainer>
+    <>
       {isLoading && <Loading />}
-      <CheckoutTitle>CheckOut</CheckoutTitle>
+      <CheckoutContainer>
+        <CheckoutTitle>CheckOut</CheckoutTitle>
 
-      {products.length > 0 ? (
-        <>
-          <CheckoutProducts>
-            {/* Produtos*/}
-            {products.map((product) => (
-              <CartItemComponent product={product} key={product.id} />
-            ))}
-          </CheckoutProducts>
+        {products.length > 0 ? (
+          <>
+            <CheckoutProducts>
+              {products.map((product) => (
+                <CartItemComponent product={product} key={product.id} />
+              ))}
+            </CheckoutProducts>
 
-          <CheckoutTotal>Total: R${productsTotalPrice}</CheckoutTotal>
-          <CustomButton
-            startIcon={<BsBagCheck />}
-            onClick={handleFinishPurchaseClick}
-          >
-            Finalizar Compra
-          </CustomButton>
-        </>
-      ) : (
-        <p>Seu carrinho está vazio</p>
-      )}
-    </CheckoutContainer>
+            <CheckoutTotal>Total: R${productsTotalPrice}</CheckoutTotal>
+            <CustomButton
+              startIcon={<BsBagCheck />}
+              onClick={handleFinishPurchaseClick}
+            >
+              Finalizar Compra
+            </CustomButton>
+          </>
+        ) : (
+          <p>Seu carrinho está vazio</p>
+        )}
+      </CheckoutContainer>
+    </>
   )
 }
 

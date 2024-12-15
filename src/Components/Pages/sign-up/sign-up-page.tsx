@@ -54,7 +54,7 @@ const SignUpPage = () => {
     if (isAuthenticated) {
       navigate('/')
     }
-  }, [isAuthenticated, navigate])
+  }, [isAuthenticated])
 
   const handleSubmitPress = async (data: SignUpForm) => {
     try {

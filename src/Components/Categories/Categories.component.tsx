@@ -13,7 +13,7 @@ const Categories = () => {
 
   useEffect(() => {
     fetchCategories()
-  })
+  }, [])
 
   return (
     <CategoriesContainer>

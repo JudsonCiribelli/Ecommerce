@@ -51,7 +51,7 @@ const CategoryDetails: FunctionComponent<CategoryDetailsProps> = ({
       }
     }
     fetchCategory()
-  })
+  }, [])
 
   if (isLoading) return <Loading />
   return (
