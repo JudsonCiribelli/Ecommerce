@@ -14,7 +14,7 @@ const CategoriesOverview: FunctionComponent = () => {
     if (categories.length === 0) {
       fetchCategories()
     }
-  }, [])
+  })
 
   if (isLoading) return <Loading />
 

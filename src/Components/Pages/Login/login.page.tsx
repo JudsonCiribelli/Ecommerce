@@ -49,7 +49,7 @@ const LoginPage = () => {
     if (isAuthenticated) {
       navigate('/')
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated, navigate])
 
   const handleSubmitPress = async (data: LoginForm) => {
     try {

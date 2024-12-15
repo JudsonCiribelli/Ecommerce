@@ -1,4 +1,4 @@
-import { createContext, FunctionComponent, ReactNode, useState } from 'react'
+import { createContext, FunctionComponent, useState } from 'react'
 import Category from '../types/category.types'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../config/firebase.config'

@@ -22,7 +22,7 @@ const AuthenticationGuard: FunctionComponent<AuthenticationProps> = ({
         navigate('/login')
       }, 3000)
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated, navigate])
 
   if (!isAuthenticated) {
     return (
