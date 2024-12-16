@@ -1,22 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { Provider } from 'react-redux'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import UserContextProvider from './contexts/user.context'
 import CategoryContextProvidder from './contexts/category.context'
 import CartContextProvider from './contexts/cart.context'
+import Store from './Store/store'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <UserContextProvider>
-      <CategoryContextProvidder>
-        <CartContextProvider>
-          <App />
-        </CartContextProvider>
-      </CategoryContextProvidder>
-    </UserContextProvider>
+    <Provider store={Store}>
+      <UserContextProvider>
+        <CategoryContextProvidder>
+          <CartContextProvider>
+            <App />
+          </CartContextProvider>
+        </CategoryContextProvidder>
+      </UserContextProvider>
+    </Provider>
   </React.StrictMode>
 )
 
