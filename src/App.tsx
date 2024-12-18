@@ -4,7 +4,7 @@ import { FunctionComponent } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth'
 import { collection, getDocs, query, where } from 'firebase/firestore'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 //Pages
 import HomePage from './Components/Pages/Home/Home.page'
 import LoginPage from './Components/Pages/Login/login.page'
@@ -13,7 +13,8 @@ import ExplorePage from './Components/Pages/explore/explore.page'
 //utilities
 import { auth, db } from './config/firebase.config'
 import { userConverter } from './convertes/firebase.convertes'
-import { LoginUser, LogouUser } from './Store/reducers/user/user.actions'
+import { LogouUser } from './Store/reducers/user/user.actions'
+import { useAppSelector } from './Hooks/redux.hooks'
 //Components
 import Loading from './Components/loading/loading.component'
 import CategoryDetailsPage from './Components/Pages/Category-details-page/Category-details-page'
@@ -27,7 +28,7 @@ const App: FunctionComponent = () => {
 
   const dispatch = useDispatch()
 
-  const { isAuthenticated } = useSelector(
+  const { isAuthenticated } = useAppSelector(
     (rootReducer: any) => rootReducer.userReducer
   )
 
@@ -51,7 +52,7 @@ const App: FunctionComponent = () => {
 
         const userFromFirestore = querySnapshot.docs[0]?.data()
 
-        dispatch(LoginUser(userFromFirestore))
+        //dispatch(LoginUser(userFromFirestore))
 
         return setIsInitializing(false)
       }
