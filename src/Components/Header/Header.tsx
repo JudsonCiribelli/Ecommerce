@@ -15,6 +15,7 @@ import { CartContext } from '../../contexts/cart.context'
 import { useDispatch } from 'react-redux'
 import { signOut } from 'firebase/auth'
 import { auth } from '../../config/firebase.config'
+import { LogouUser } from '../../Store/reducers/user/user.actions'
 
 const Header = () => {
   const navigate = useNavigate()
@@ -41,7 +42,7 @@ const Header = () => {
   }
 
   const handleSigOutClick = () => {
-    dispatch({ type: 'LOGOUT_USER' })
+    dispatch(LogouUser())
     signOut(auth)
   }
 

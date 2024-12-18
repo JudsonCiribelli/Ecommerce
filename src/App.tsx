@@ -13,6 +13,7 @@ import ExplorePage from './Components/Pages/explore/explore.page'
 //utilities
 import { auth, db } from './config/firebase.config'
 import { userConverter } from './convertes/firebase.convertes'
+import { LoginUser, LogouUser } from './Store/reducers/user/user.actions'
 //Components
 import Loading from './Components/loading/loading.component'
 import CategoryDetailsPage from './Components/Pages/Category-details-page/Category-details-page'
@@ -35,7 +36,7 @@ const App: FunctionComponent = () => {
       const isSigningOut = isAuthenticated && !user
 
       if (isSigningOut) {
-        dispatch({ type: 'LOGOUT_USER' })
+        dispatch(LogouUser())
 
         return setIsInitializing(false)
       }
@@ -50,7 +51,7 @@ const App: FunctionComponent = () => {
 
         const userFromFirestore = querySnapshot.docs[0]?.data()
 
-        dispatch({ type: 'LOGIN_USER', payload: userFromFirestore })
+        dispatch(LoginUser(userFromFirestore))
 
         return setIsInitializing(false)
       }
