@@ -1,11 +1,11 @@
-import { FunctionComponent, useContext, useEffect } from 'react'
+import { FunctionComponent, useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import {
   AiOutlineCheckCircle,
   AiOutlineCloseCircle,
   AiOutlineHome
 } from 'react-icons/ai'
-//import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 // Styles
 import {
@@ -18,21 +18,18 @@ import CustomButton from '../../custom-button/custom-button-component'
 
 // Utilities
 import Colors from '../../../theme/theme.colors'
-import { CartContext } from '../../../contexts/cart.context'
-//import { clearCartProducts } from '../../store/toolkit/cart/cart.slice'
+import { ClearCartProducts } from '../../../Store/reducers/Cart/cart.actions'
 
 const PaymentConfirmationPage: FunctionComponent = () => {
-  //const dispatch = useDispatch()
-
-  const [searchParams] = useSearchParams()
-  const { clearProducts } = useContext(CartContext)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
   const status = searchParams.get('success')
   const isCanceled = searchParams.get('canceled') === 'true'
 
   useEffect(() => {
     if (status === 'true') {
-      clearProducts()
+      dispatch(ClearCartProducts())
     }
   }, [status])
 

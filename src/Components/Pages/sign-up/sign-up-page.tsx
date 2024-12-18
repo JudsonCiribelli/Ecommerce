@@ -27,7 +27,6 @@ import {
 import InputErrorMessage from '../../Input-error-message-component/input-error-message'
 import Loading from '../../loading/loading.component'
 import { useAppSelector } from '../../../Hooks/redux.hooks'
-import rootReducer from '../../../Store/root-reducer'
 
 interface SignUpForm {
   firstName: string
