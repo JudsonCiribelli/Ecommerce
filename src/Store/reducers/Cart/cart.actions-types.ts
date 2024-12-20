@@ -1,9 +1,10 @@
-const CartActionsCart = {
+const CartActionTypes = {
   toggleCart: 'cart/toggle',
   addProductToCart: 'cart/addProduct',
   removeProductFromCart: 'cart/removeProduct',
-  increaseCartProductQuantity: 'cart/increaseProductQuantity',
-  decreaseCartProductQuantity: 'cart/decreaseProductQuantity',
-  clearCartProducts: 'cart/clearCartProducts'
+  increaseCartProductQuantity: 'cart/increaseCartProductQuantity',
+  decreaseCartProductQuantity: 'cart/decreaseCartProductQuantity',
+  clearCartProducts: 'cart/clearProducts'
 }
-export default CartActionsCart
+
+export default CartActionTypes

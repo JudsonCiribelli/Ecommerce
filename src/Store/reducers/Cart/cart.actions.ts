@@ -1,30 +1,30 @@
 import Product from '../../../types/product.types'
-import CartActionsCart from './cart.actions-types'
+import CartActionTypes from './cart.actions-types'
 
 export const ToggleCart = () => ({
-  type: CartActionsCart.toggleCart
+  type: CartActionTypes.toggleCart
 })
 
 export const AddProductToCart = (payload: Product) => ({
-  type: CartActionsCart.addProductToCart,
+  type: CartActionTypes.addProductToCart,
   payload
 })
 
 export const RemoveProductFromCart = (payload: string) => ({
-  type: CartActionsCart.removeProductFromCart,
+  type: CartActionTypes.removeProductFromCart,
   payload
 })
 
 export const IncreaseCartProductQuantity = (payload: string) => ({
-  type: CartActionsCart.increaseCartProductQuantity,
+  type: CartActionTypes.increaseCartProductQuantity,
   payload
 })
 
 export const DecreaseCartProductQuantity = (payload: string) => ({
-  type: CartActionsCart.decreaseCartProductQuantity,
+  type: CartActionTypes.decreaseCartProductQuantity,
   payload
 })
 
 export const ClearCartProducts = () => ({
-  type: CartActionsCart.clearCartProducts
+  type: CartActionTypes.clearCartProducts
 })

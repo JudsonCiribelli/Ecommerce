@@ -1,4 +1,5 @@
 import CartProduct from '../../../types/cart.types'
+
 import CartActionsCart from './cart.actions-types'
 
 interface InitialState {
@@ -18,6 +19,7 @@ const CartReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case CartActionsCart.toggleCart:
       return { ...state, isVisible: !state.isVisible }
+
     case CartActionsCart.addProductToCart: {
       const product = action.payload
 

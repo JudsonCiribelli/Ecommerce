@@ -12,9 +12,9 @@ import {
   RemoveButton
 } from './Cart-item.styles'
 import {
-  DecreaseCartProductQuantity,
+  RemoveProductFromCart,
   IncreaseCartProductQuantity,
-  RemoveProductFromCart
+  DecreaseCartProductQuantity
 } from '../../Store/reducers/Cart/cart.actions'
 
 interface CartItemProps {
