@@ -2,9 +2,10 @@
 import { useForm } from 'react-hook-form'
 import { FiLogIn } from 'react-icons/fi'
 import { isEmail } from 'validator'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+//Utilities
+import { UserContext } from '../../../contexts/user.context'
 //Components
 import CustomButton from '../../custom-button/custom-button-component'
 import CustomInput from '../../custom-input/custom-input-component'
@@ -26,7 +27,6 @@ import {
 } from './sign-up-styles'
 import InputErrorMessage from '../../Input-error-message-component/input-error-message'
 import Loading from '../../loading/loading.component'
-import { useAppSelector } from '../../../Hooks/redux.hooks'
 
 interface SignUpForm {
   firstName: string
@@ -48,7 +48,7 @@ const SignUpPage = () => {
 
   const watchPassword = watch('password')
 
-  const { isAuthenticated } = useAppSelector((rootReducer: any) => rootReducer)
+  const { isAuthenticated } = useContext(UserContext)
 
   const navigate = useNavigate()
 

@@ -1,10 +1,10 @@
 //Bibliotecas
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { FunctionComponent } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth'
 import { collection, getDocs, query, where } from 'firebase/firestore'
-import { useDispatch } from 'react-redux'
+
 //Pages
 import HomePage from './Components/Pages/Home/Home.page'
 import LoginPage from './Components/Pages/Login/login.page'
@@ -12,9 +12,8 @@ import SignUpPage from './Components/Pages/sign-up/sign-up-page'
 import ExplorePage from './Components/Pages/explore/explore.page'
 //utilities
 import { auth, db } from './config/firebase.config'
+import { UserContext } from './contexts/user.context'
 import { userConverter } from './convertes/firebase.convertes'
-import { LogouUser } from './Store/reducers/user/user.actions'
-import { useAppSelector } from './Hooks/redux.hooks'
 //Components
 import Loading from './Components/loading/loading.component'
 import CategoryDetailsPage from './Components/Pages/Category-details-page/Category-details-page'
@@ -25,20 +24,14 @@ import PaymentConfirmationPage from './Components/Pages/Payment-Confirmation/pay
 
 const App: FunctionComponent = () => {
   const [isInitializing, setIsInitializing] = useState(true)
-
-  const dispatch = useDispatch()
-
-  const { isAuthenticated } = useAppSelector(
-    (rootReducer: any) => rootReducer.userReducer
-  )
+  const { isAuthenticated, loginUser, logoutUser } = useContext(UserContext)
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       const isSigningOut = isAuthenticated && !user
 
       if (isSigningOut) {
-        dispatch(LogouUser())
-
+        logoutUser()
         return setIsInitializing(false)
       }
       const isSigningIn = !isAuthenticated && user
@@ -51,15 +44,14 @@ const App: FunctionComponent = () => {
         )
 
         const userFromFirestore = querySnapshot.docs[0]?.data()
-
-        //dispatch(LoginUser(userFromFirestore))
+        loginUser(userFromFirestore)
 
         return setIsInitializing(false)
       }
 
       return setIsInitializing(false)
     })
-  }, [dispatch])
+  }, [isAuthenticated])
 
   if (isInitializing) return <Loading />
 

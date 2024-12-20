@@ -3,9 +3,8 @@ import { FiLogIn } from 'react-icons/fi'
 import { useForm } from 'react-hook-form'
 import isEmail from 'validator/lib/isEmail'
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 //Components
 import CustomButton from '../../custom-button/custom-button-component'
 import Header from '../../Header/Header'
@@ -27,6 +26,7 @@ import {
   LoginSubtitle
 } from './login.styles'
 import Loading from '../../loading/loading.component'
+import { UserContext } from '../../../contexts/user.context'
 
 interface LoginForm {
   email: string
@@ -40,11 +40,9 @@ const LoginPage = () => {
     handleSubmit,
     setError
   } = useForm<LoginForm>()
+  const { isAuthenticated } = useContext(UserContext)
 
   const [isLoading, setIsLoading] = useState(false)
-  const { isAuthenticated } = useSelector(
-    (rootReducer: any) => rootReducer.userReducer
-  )
 
   const navigate = useNavigate()
 
