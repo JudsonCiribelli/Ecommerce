@@ -39,27 +39,23 @@ const Header = () => {
 
   return (
     <HeaderContainer>
-      <div className='header-items-container'>
-        <HeaderTitle onClick={handleLogoClick}>JC Clothing</HeaderTitle>
-        <HeaderItems>
-          <HeaderItem onClick={handleExploreClick}>Explorar</HeaderItem>
-          {!isAuthenticated && (
-            <>
-              <HeaderItem onClick={handleLoginClick}>Login</HeaderItem>
-              <HeaderItem onClick={handleSignUpPageClick}>
-                Criar conta
-              </HeaderItem>
-            </>
-          )}
-          {isAuthenticated && (
-            <HeaderItem onClick={() => signOut(auth)}>Sair</HeaderItem>
-          )}
-          <HeaderItem onClick={toggleCart}>
-            <FaCartShopping size={25} />
-            <p style={{ marginLeft: 5 }}>{productsCount}</p>
-          </HeaderItem>
-        </HeaderItems>
-      </div>
+      <HeaderTitle onClick={handleLogoClick}>Clothing</HeaderTitle>
+      <HeaderItems>
+        <HeaderItem onClick={handleExploreClick}>Explorar</HeaderItem>
+        {!isAuthenticated && (
+          <>
+            <HeaderItem onClick={handleLoginClick}>Login</HeaderItem>
+            <HeaderItem onClick={handleSignUpPageClick}>Criar conta</HeaderItem>
+          </>
+        )}
+        {isAuthenticated && (
+          <HeaderItem onClick={() => signOut(auth)}>Sair</HeaderItem>
+        )}
+        <HeaderItem onClick={toggleCart}>
+          <FaCartShopping size={25} />
+          <p style={{ marginLeft: 5 }}>{productsCount}</p>
+        </HeaderItem>
+      </HeaderItems>
     </HeaderContainer>
   )
 }
