@@ -19,13 +19,16 @@ export const CartContainer = styled.div<CartContainerPros>`
   visibility: ${(props) => (props.isVisible ? 'visible' : 'hidden')};
   opacity: ${(props) => (props.isVisible ? '1' : '0')};
   transition: all 0.3s ease;
+
   p {
     color: ${Colors.text.dark};
   }
 `
+
 export const CartEscapeArea = styled.div`
   width: 100%;
 `
+
 export const CartContent = styled.div`
   height: 100%;
   min-width: 500px;
@@ -33,6 +36,10 @@ export const CartContent = styled.div`
   background-color: white;
   padding: 20px;
   overflow-y: scroll;
+
+  @media (max-width: 768px) {
+    min-width: 85%;
+  }
 `
 export const CartTitle = styled.p`
   font-size: 1.325rem;
