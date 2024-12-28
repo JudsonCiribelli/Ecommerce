@@ -10,7 +10,7 @@ import {
 import {
   PaymentConfirmationContainer,
   PaymentConfirmationContent
-} from './Payment-Confirmation.Styles'
+} from './payment-confirmation-styles'
 // Components
 import Header from '../../Header/Header'
 import CustomButton from '../../custom-button/custom-button-component'
