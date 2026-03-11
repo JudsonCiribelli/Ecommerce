@@ -1,4 +1,4 @@
-# 🚗 Clothing - Marketplace
+# 🛒 Clothing - Marketplace
 
 ![React Js](https://img.shields.io/badge/React_JS-61DAFB?style=for-the-badge&logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
