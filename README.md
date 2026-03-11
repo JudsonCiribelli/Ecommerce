@@ -1,46 +1,101 @@
-# Getting Started with Create React App
+# 🚗 Clothing - Marketplace
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![React Js](https://img.shields.io/badge/React_JS-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=firebase&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Stripe](https://img.shields.io/badge/Stripe-039BE5?style=for-the-badge&logo=stripe&logoColor=white)
 
-## Available Scripts
+> Full-stack E-commerce focado em vestuário, integrando autenticação robusta, gestão de estado global e um fluxo de checkout profissional com Stripe.
 
-In the project directory, you can run:
+---
 
-### `yarn start`
+## 💻 Sobre o Projeto
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Este projeto simula uma experiência real de compra online. O diferencial técnico reside na arquitetura híbrida: utilizei o Firebase para agilidade no gerenciamento de usuários e banco de dados NoSQL, enquanto desenvolvi uma API independente em Node.js para processar pagamentos de forma segura, garantindo a proteção de chaves sensíveis e seguindo as melhores práticas de mercado.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🛠 Tecnologias Utilizadas
 
-### `yarn test`
+### Front-end
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **[React.js + TypeScript]**
+- **[Styled Components]**
+- **[Context API]**
+- **[Firebase]**
+- **[Tailwind]**
 
-### `yarn build`
+### Back-end (Checkout Service)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **[Node.js & Express]**
+- **[Stripe API]**
+- **[CORS]**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 📊 Arquitetura e Estado Global
 
-### `yarn eject`
+- **Context API:** Centralização da lógica de autenticação e dados de anúncios, evitando o prop drilling e melhorando a manutenção do código.
+- **Custom Hooks:** Abstração de lógicas complexas para componentes reutilizáveis e código mais limpo.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 🎨 UI/UX Responsiva (Mobile-First)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Interface construída com Tailwind CSS, garantindo que a experiência de compra seja idêntica e fluida tanto em dispositivos móveis quanto em desktops.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+---
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## ⚙️ Funcionalidades Principais
 
-## Learn More
+- [x] Autenticação Flexível: Login via Google OAuth ou e-mail/senha através do Firebase.
+- [x] Catálogo Dinâmico: Listagem de produtos consumida em tempo real do Firestore.
+- [x] Carrinho Inteligente: Gerenciamento de estado complexo com Context API, permitindo persistência e manipulação de quantidades.
+- [x] Checkout Seguro: Integração com Stripe para processamento de pagamentos em ambiente seguro, redirecionando o usuário de volta para o site após a conclusão.
+- [x] Design Responsivo: Interface moderna e adaptável para qualquer disposi
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🏗️ Arquitetura do Projeto
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Para este projeto, optei por separar as responsabilidades em dois deploys distintos, demonstrando conhecimento em infraestrutura:
+
+- [x] Client (Vercel): Interface do usuário e lógica de persistência de dados.
+- [x] Payment API (Render): Servidor dedicado para comunicação segura com o Stripe, evitando a exposição de Secret Keys no front-end.
+
+---
+
+## 🚀 Como Executar
+
+### Pré-requisitos
+
+- Node.js instalado (v18 ou superior).
+- Uma conta no Firebase para configuração das chaves de API.
+
+### Passo a passo
+
+1. **Clone o repositório:**
+   ```bash
+   git clone (https://github.com/JudsonCiribelli/seu-repositorio.git)
+   ```
+2. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
+3. **Configure as variáveis de ambiente:**
+   **Crie um arquivo .env.local na raiz e adicione suas credenciais do Firebase**
+   - Front-end:
+
+   ```Snippet de código
+   REACT_APP_FIREBASE_API_KEY=...
+   REACT_APP_API_URL=http://localhost:5001
+   ```
+
+   - Back-end:
+
+   ```Snippet de código
+   STRIPE_SECRET_API_KEY=...
+   FRONT_END_URL=http://localhost:3000
+   ```
+
+4. **Rode o projeto em modo de desenvolvimento**
+   ```bash
+   npm run dev
+   ```
+
+- Desenvolvido por Judson Rodrigues Ciribelli Filho 🚀
