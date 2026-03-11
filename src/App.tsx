@@ -51,6 +51,7 @@ const App: FunctionComponent = () => {
 
       return setIsInitializing(false)
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated])
 
   if (isInitializing) return <Loading />

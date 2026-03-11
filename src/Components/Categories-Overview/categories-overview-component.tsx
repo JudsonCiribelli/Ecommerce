@@ -14,6 +14,7 @@ const CategoriesOverview: FunctionComponent = () => {
     if (categories.length === 0) {
       fetchCategories()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   if (isLoading) return <Loading />

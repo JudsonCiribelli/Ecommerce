@@ -51,6 +51,7 @@ const CategoryDetails: FunctionComponent<CategoryDetailsProps> = ({
       }
     }
     fetchCategory()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   if (isLoading) return <Loading />

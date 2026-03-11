@@ -30,6 +30,7 @@ const PaymentConfirmationPage: FunctionComponent = () => {
     if (status === 'true') {
       clearProducts()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status])
 
   const handleGoToHomePageClick = () => {
