@@ -3,12 +3,12 @@ import { getFirestore } from 'firebase/firestore'
 import { initializeApp } from 'firebase/app'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBZ6oFR5C75xEMuxpIMdmqlxPHTdfHm5TA',
-  authDomain: 'clothing-ecommerce-dd1ef.firebaseapp.com',
-  projectId: 'clothing-ecommerce-dd1ef',
-  storageBucket: 'clothing-ecommerce-dd1ef.firebasestorage.app',
-  messagingSenderId: '541705371767',
-  appId: '1:541705371767:web:80f8613e4c3792f5ed0672'
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
 }
 
 const app = initializeApp(firebaseConfig)
